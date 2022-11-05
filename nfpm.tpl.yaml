@@ -1,0 +1,39 @@
+# nfpm example config file
+#
+# check https://nfpm.goreleaser.com/configuration for detailed usage
+#
+name: "minecraft-overviewer"
+arch: "amd64"
+platform: "linux"
+version: "${OVERVIEWER_VERSION}"
+section: "python"
+priority: "optional"
+# Dependencies. (overridable)
+# This will expand any env var you set in the field, eg ${DEPENDS_NGINX}
+# the env var approach can be used to account for differences in platforms
+# eg rhel needs nginx >= 1:1.18 and deb needs nginx (>= 1.18.0)
+depends:
+  - python3 (>=3.4~)
+  - python3:any (>= 3.3.2-2~)
+  - python3-pil
+  - python3-numpy
+  - libc6 (>= 2.4)
+
+description: |
+  Generates large resolution images of a Minecraft map.
+maintainer: "Andres Bott <contact@andresbott.com>"
+homepage: "http://overviewer.org/"
+license: " GPL-3.0 license"
+contents:
+  - src: ./dist/scipts/overviewer.py
+    dst: /usr/bin/minecraft-overviewer
+  - src: ./dist/lib/overviewer_core
+    dst: /lib/python3/dist-packages/overviewer_core
+
+#overrides:
+#  rpm:
+#    scripts:
+#      postinstall: /app/linux-build/postinstall.sh
+#  deb:
+#    scripts:
+#      postinstall: /app/linux-build/postinstall.sh

@@ -1,2 +1,3 @@
-# linux-candy
-mixed small candy scripts for linux
+# minecraft-overviewer-package
+
+tooling to build and package [overviewer](https://overviewer.org/) for linux
